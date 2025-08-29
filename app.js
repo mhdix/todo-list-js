@@ -95,12 +95,12 @@ function filterTodos(e) {
       break;
 
     case "completed":
-      const filterCompletedTodos = todos.filter((todo) => todo.onCompleted);
+      const filterCompletedTodos = todos.filter((todo) => todo.isCompleted);
       createTodos(filterCompletedTodos);
       break;
 
     case "unCompleted":
-      const fliterOnCompletedTodos = todos.filter((todo) => !todo.onCompleted);
+      const fliterOnCompletedTodos = todos.filter((todo) => !todo.isCompleted);
       createTodos(fliterOnCompletedTodos);
       break;
 
