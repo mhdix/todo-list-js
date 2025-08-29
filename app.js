@@ -1,5 +1,5 @@
 // todo list
-const todos = [];
+let todos = [];
 
 // todo add
 const todoAddForm = document.querySelector(".todo__form");
@@ -52,7 +52,7 @@ function createTodos(todos) {
             <span class="todo__text">${todo.title}</span>
             <span class="todo__text">${todo.createdAt}</span>
           </label>
-          <button class="todo__delete">
+          <button class="todo__delete" data-id="${todo.id}"f>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="todo__icon"
@@ -72,6 +72,9 @@ function createTodos(todos) {
   });
   todoAddInput.value = "";
   todoListProvider.innerHTML = result;
+
+  const removeBtn = [...document.querySelectorAll(".todo__delete")];
+  removeBtn.forEach((todo) => todo.addEventListener("click", deleteTodo));
 }
 
 // fitler
@@ -95,4 +98,11 @@ function filterTodos(e) {
       createTodos(todos);
       break;
   }
+}
+
+// delete
+function deleteTodo(e) {
+  const todoSelectedId = Number(e.target.dataset.id);
+  todos = todos.filter((todo) => todo.id !== todoSelectedId);
+  createTodos(todos);
 }
