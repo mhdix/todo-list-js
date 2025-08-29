@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>لیست کارها</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bungee&family=Noto+Sans+Arabic:wght@100..900&family=Vazirmatn:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="todo">
+    <div class="todo__container">
+      <h1 class="todo__title">لیست کارها</h1>
+
+      <!-- بخش ورودی -->
+      <form action="" class="todo__form">
+        <div class="todo__controls">
+          <div class="todo__input-group">
+            <input type="text" class="todo__input" placeholder="کار جدید..." />
+            <button class="todo__btn">
+              <!-- Heroicon: plus -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="todo__icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="todo__input-group">
+            <!-- <input type="text" class="todo__input" placeholder="مرتب‌سازی..." /> -->
+            <select
+              name="todos"
+              class="todo__input filter-todos todo__select-box"
+            >
+              <option value="all">all</option>
+              <option value="completed">completed</option>
+              <option value="onCompleted">onCompleted</option>
+            </select>
+            <!-- <button class="todo__btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="todo__icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </button> -->
+          </div>
+        </div>
+      </form>
+
+      <!-- لیست کارها -->
+      <ul class="todo__list">
+        <!-- <li class="todo__item">
+          <label class="todo__label">
+            <input type="checkbox" class="todo__checkbox" />
+            <span class="todo__text">یادگیری BEM</span>
+          </label>
+          <button class="todo__delete">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="todo__icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7h6m2-3H7v3h10V4z"
+              />
+            </svg>
+          </button>
+        </li> -->
+
+        <!-- <li class="todo__item todo__item--done">
+          <label class="todo__label">
+            <input type="checkbox" class="todo__checkbox" checked />
+            <span class="todo__text">ساختن ToDo List</span>
+          </label>
+          <button class="todo__delete">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="todo__icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7h6m2-3H7v3h10V4z"
+              />
+            </svg>
+          </button>
+        </li> -->
+      </ul>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
