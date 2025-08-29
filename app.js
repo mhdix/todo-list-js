@@ -46,9 +46,13 @@ function addNewTodo(e) {
 function createTodos(todos) {
   let result = "";
   todos.forEach((todo) => {
-    result += `<li class="todo__item">
+    result += `<li class="todo__item ${
+      todo.isCompleted ? "todo__item--done" : ""
+    }" >
           <label class="todo__label">
-            <input type="checkbox" class="todo__checkbox" />
+            <input type="checkbox"  class="todo__checkbox" ${
+              todo.isCompleted ? "checked " : ""
+            } data-id="${todo.id}" />
             <span class="todo__text">${todo.title}</span>
             <span class="todo__text">${todo.createdAt}</span>
           </label>
@@ -73,8 +77,14 @@ function createTodos(todos) {
   todoAddInput.value = "";
   todoListProvider.innerHTML = result;
 
+  // remove todo
   const removeBtn = [...document.querySelectorAll(".todo__delete")];
   removeBtn.forEach((todo) => todo.addEventListener("click", deleteTodo));
+
+  // check todo
+  const completedTodo = [...document.querySelectorAll(".todo__checkbox")];
+
+  completedTodo.forEach((todo) => todo.addEventListener("click", checkTodo));
 }
 
 // fitler
@@ -104,5 +114,13 @@ function filterTodos(e) {
 function deleteTodo(e) {
   const todoSelectedId = Number(e.target.dataset.id);
   todos = todos.filter((todo) => todo.id !== todoSelectedId);
+  createTodos(todos);
+}
+
+// checkTodo
+function checkTodo(e) {
+  const todoSelectedId = Number(e.target.dataset.id);
+  const findeTodoSelected = todos.find((todo) => todo.id === todoSelectedId);
+  findeTodoSelected.isCompleted = !findeTodoSelected.isCompleted;
   createTodos(todos);
 }
