@@ -15,11 +15,17 @@ const todoDeleteBtn = document.querySelector(".todo__delete");
 // todo check
 const todoCheckInput = document.querySelector(".todo__checkbox");
 
+// todo filter
+const todoFilter = document.querySelector(".filter-todos");
+
 //* add todo
 
-// select element
+//* event
 todoAddForm.addEventListener("submit", addNewTodo);
-// add function
+todoFilter.addEventListener("change", filterTodos);
+
+//* functions
+// add
 function addNewTodo(e) {
   e.preventDefault();
   if (todoAddInput.value === "") return null;
@@ -34,7 +40,10 @@ function addNewTodo(e) {
   console.log(todoAddInput.value);
   todos.push(newTodo);
   console.log(todos);
+  createTodos(todos);
+}
 
+function createTodos(todos) {
   let result = "";
   todos.forEach((todo) => {
     result += `<li class="todo__item">
@@ -63,4 +72,27 @@ function addNewTodo(e) {
   });
   todoAddInput.value = "";
   todoListProvider.innerHTML = result;
+}
+
+// fitler
+function filterTodos(e) {
+  switch (e.target.value) {
+    case "all":
+      createTodos(todos);
+      break;
+
+    case "completed":
+      const filterCompletedTodos = todos.filter((todo) => todo.onCompleted);
+      createTodos(filterCompletedTodos);
+      break;
+
+    case "unCompleted":
+      const fliterOnCompletedTodos = todos.filter((todo) => !todo.onCompleted);
+      createTodos(fliterOnCompletedTodos);
+      break;
+
+    default:
+      createTodos(todos);
+      break;
+  }
 }
