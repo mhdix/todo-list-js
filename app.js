@@ -1,6 +1,6 @@
 // todo list
-let todos = [];
-let filterValue = "all"
+// let todos = [];
+let filterValue = "all";
 
 // todo add
 const todoAddForm = document.querySelector(".todo__form");
@@ -27,7 +27,10 @@ todoFilter.addEventListener("change", (e) => {
   filterValue = e.target.value;
   filterTodos();
 });
-
+document.addEventListener("DOMContentLoaded", () => {
+  const todos = getAllTodos();
+  createTodos(todos);
+});
 //* functions
 // add
 function addNewTodo(e) {
@@ -42,8 +45,8 @@ function addNewTodo(e) {
     isCompleted: false,
   };
   console.log(todoAddInput.value);
-  todos.push(newTodo);
-  console.log(todos);
+  // todos.push(newTodo);
+  saveTodo(newTodo);
   filterTodos();
 }
 
@@ -93,6 +96,7 @@ function createTodos(todos) {
 
 // fitler
 function filterTodos() {
+  const todos = getAllTodos();
   switch (filterValue) {
     case "all":
       createTodos(todos);
@@ -116,15 +120,39 @@ function filterTodos() {
 
 // delete
 function deleteTodo(e) {
+  let todos = getAllTodos();
+
   const todoSelectedId = Number(e.target.dataset.id);
   todos = todos.filter((todo) => todo.id !== todoSelectedId);
+  saveAllTodos(todos);
   filterTodos();
 }
 
 // checkTodo
 function checkTodo(e) {
+  let todos = getAllTodos();
+
   const todoSelectedId = Number(e.target.dataset.id);
   const findeTodoSelected = todos.find((todo) => todo.id === todoSelectedId);
   findeTodoSelected.isCompleted = !findeTodoSelected.isCompleted;
+  saveAllTodos(todos);
   filterTodos();
+}
+
+// localStorage
+
+function getAllTodos() {
+  const getTodos = JSON.parse(localStorage.getItem("todos")) || [];
+  return getTodos;
+}
+
+function saveTodo(todo) {
+  const todos = getAllTodos();
+  todos.push(todo);
+  const savedTodos = localStorage.setItem("todos", JSON.stringify(todos));
+  return savedTodos;
+}
+
+function saveAllTodos(todos) {
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
