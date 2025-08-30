@@ -172,3 +172,17 @@ body {
 button > svg {
   pointer-events: none;
 }
+
+
+/* inputs */
+.input {
+  background-color: transparent;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+.todo__sort {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+}

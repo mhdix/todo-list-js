@@ -19,6 +19,10 @@ const todoCheckInput = document.querySelector(".todo__checkbox");
 // todo filter
 const todoFilter = document.querySelector(".filter-todos");
 
+// todo sort
+const todoSort = document.querySelector(".todo-sort__input");
+todoSort.addEventListener("change", sortTodos);
+
 //* add todo
 
 //* event
@@ -41,7 +45,8 @@ function addNewTodo(e) {
   const newTodo = {
     id: Date.now(),
     title: todoAddInput.value,
-    createdAt: new Date().toLocaleDateString("fa-IR"),
+    // createdAt: new Date().toLocaleDateString("fa-IR"),
+    createdAt: Date.now(),
     isCompleted: false,
   };
   console.log(todoAddInput.value);
@@ -140,7 +145,6 @@ function checkTodo(e) {
 }
 
 // localStorage
-
 function getAllTodos() {
   const getTodos = JSON.parse(localStorage.getItem("todos")) || [];
   return getTodos;
@@ -155,4 +159,23 @@ function saveTodo(todo) {
 
 function saveAllTodos(todos) {
   localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+// sort
+function sortTodos(e) {
+  const sortBy = e.target.value;
+  const todos = getAllTodos();
+  console.log(todos);
+  todos.sort((a, b) => {
+    if (sortBy === "latest") {
+      return b.createdAt - a.createdAt; // جدیدترها جلوتر
+    }
+    if (sortBy === "earliest") {
+      return a.createdAt - b.createdAt; // قدیمی‌ترها جلوتر
+    }
+    return 0;
+  });
+
+  saveAllTodos(todos);
+  createTodos(todos);
 }
